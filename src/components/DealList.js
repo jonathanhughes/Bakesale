@@ -1,0 +1,31 @@
+import React from 'react';
+import {View, FlatList, StyleSheet} from 'react-native';
+import PropTypes from 'prop-types';
+import DealItem from './DealItem';
+
+const DealList = ({deals, onItemPress}) => {
+  return (
+    <View style={styles.list}>
+      <FlatList
+        data={deals}
+        renderItem={({item}) => <DealItem deal={item} onPress={onItemPress} />}
+        keyExtractor={item => item.key}
+        scrollEnabled={true}
+      />
+    </View>
+  );
+};
+
+DealList.propTypes = {
+  deals: PropTypes.array.isRequired,
+  onItemPress: PropTypes.func.isRequired,
+};
+
+const styles = StyleSheet.create({
+  list: {
+    backgroundColor: '#eee',
+    width: '100%',
+  },
+});
+
+export default DealList;
