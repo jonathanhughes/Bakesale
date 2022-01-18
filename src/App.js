@@ -1,4 +1,4 @@
-import React, {useEffect, useState, useCallback} from 'react';
+import React, {useEffect, useState} from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 import ajax from './ajax';
 import DealList from './components/DealList';
@@ -23,13 +23,14 @@ const App = () => {
   const currentDeal = () =>
     dealsToDisplay.find(deal => deal.key === currentDealId);
 
-  const searchDeals = useCallback(async searchTerm => {
+  const searchDeals = async searchTerm => {
     if (searchTerm) {
       setDealsFromSearch(await ajax.fetchDealsSearchResults(searchTerm));
     } else {
       setDealsFromSearch([]);
     }
-  }, []);
+  };
+
   if (currentDealId) {
     return (
       <View style={styles.main}>

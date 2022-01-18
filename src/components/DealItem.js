@@ -21,7 +21,7 @@ const DealItem = ({deal, onPress}) => {
   );
 };
 
-DealItem.PropTypes = {
+DealItem.propTypes = {
   deal: PropTypes.object.isRequired,
   onPress: PropTypes.func.isRequired,
 };

@@ -44,7 +44,7 @@ const DealDetail = ({initialDealData, onBack}) => {
   );
 };
 
-DealDetail.PropTypes = {
+DealDetail.propTypes = {
   initialDealData: PropTypes.object.isRequired,
   onBack: PropTypes.func.isRequired,
 };
