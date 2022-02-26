@@ -12,7 +12,7 @@ const DealDetail = ({initialDealData, onBack}) => {
       setDeal(await ajax.fetchDealDetail(deal.key));
     };
     fetchDealDetail();
-  });
+  }, [deal]);
 
   return (
     <View style={styles.deal}>
