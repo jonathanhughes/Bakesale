@@ -11,6 +11,7 @@ import {
   Animated,
   Dimensions,
   Linking,
+  ScrollView,
 } from 'react-native';
 import {priceDisplay} from '../util';
 import ajax from '../ajax';
@@ -68,7 +69,7 @@ const DealDetail = ({initialDealData, onBack}) => {
     };
     fetchDealDetail();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [deal]);
+  }, []);
 
   const openDeal = () => {
     Linking.openURL(deal.url);
@@ -84,10 +85,10 @@ const DealDetail = ({initialDealData, onBack}) => {
         source={{uri: deal.media[imageIndex]}}
         style={[{left: imageXPos}, styles.image]}
       />
-      <View style={styles.detail}>
-        <View>
-          <Text style={styles.title}>{deal.title}</Text>
-        </View>
+      <View>
+        <Text style={styles.title}>{deal.title}</Text>
+      </View>
+      <ScrollView style={styles.detail}>
         <View style={styles.footer}>
           <View style={styles.info}>
             <Text style={styles.cause}>{deal.cause.name}</Text>
@@ -100,11 +101,11 @@ const DealDetail = ({initialDealData, onBack}) => {
             </View>
           )}
         </View>
-      </View>
-      <View style={styles.description}>
-        <Text>{deal.description}</Text>
-      </View>
-      <Button title="Buy this deal!" onPress={openDeal} />
+        <View style={styles.description}>
+          <Text>{deal.description}</Text>
+        </View>
+        <Button title="Buy this deal!" onPress={openDeal} />
+      </ScrollView>
     </View>
   );
 };
@@ -115,6 +116,9 @@ DealDetail.propTypes = {
 };
 
 const styles = StyleSheet.create({
+  detail: {
+    marginBottom: 20,
+  },
   backLink: {
     marginBottom: 10,
     color: '#8645ad',

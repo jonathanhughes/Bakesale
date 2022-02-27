@@ -16,12 +16,12 @@ const App = () => {
   const [deals, setDeals] = useState([]);
   const [dealsFromSearch, setDealsFromSearch] = useState([]);
   const [currentDealId, setCurrentDealId] = useState(null);
+  const [activeSearchTerm, setActiveSearchTerm] = useState('');
   const titleXPos = new Animated.Value(0);
 
   const dealsToDisplay = dealsFromSearch.length > 0 ? dealsFromSearch : deals;
 
   const animateTitle = (direction = 1) => {
-    console.log('ANIMATE');
     const width = Dimensions.get('window').width - 150;
     Animated.timing(titleXPos, {
       toValue: direction * (width / 2),
@@ -53,6 +53,7 @@ const App = () => {
     } else {
       setDealsFromSearch([]);
     }
+    setActiveSearchTerm(searchTerm);
   };
 
   if (currentDealId) {
@@ -67,7 +68,10 @@ const App = () => {
   } else if (dealsToDisplay.length > 0) {
     return (
       <View style={styles.main}>
-        <SearchBar searchDeals={searchDeals} />
+        <SearchBar
+          searchDeals={searchDeals}
+          initialSearchTerm={activeSearchTerm}
+        />
         <DealList deals={dealsToDisplay} onItemPress={setCurrentDealId} />
       </View>
     );
