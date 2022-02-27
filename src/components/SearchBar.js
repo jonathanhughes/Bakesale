@@ -15,7 +15,8 @@ const SearchBar = ({searchDeals}) => {
       searchDealsCallback(searchTerm);
       clearInterval(interval.current);
     }, 500);
-  }, [searchDealsCallback, searchTerm]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [searchTerm]);
 
   return (
     <TextInput
